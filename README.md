@@ -1,13 +1,14 @@
 dingding commerce
 ================
 
-##Project Member 
-*Han Jiang
-*Lily Yang
-*Jeffy Tsui
-*Hans Liu
-*Damon Lin
-*Seven Chu
+##Project Member
+
+* Han Jiang
+* Lily Yang
+* Jeffy Tsui
+* Hans Liu
+* Damon Lin
+* Seven Chu
 
 
 ##Requirement Analysis:
