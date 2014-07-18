@@ -19,5 +19,6 @@ The project is supposed to finished in 12 days
 
 ##Tool navigation for team member
 
-This file is edit with markdown language,
-![Markdown语法说明文档](http://files.cnblogs.com/chengn/MarkDown%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80.pdf)
+* We use github for version control
+* This file is edit with markdown language,[Markdown Guide](http://files.cnblogs.com/chengn/MarkDown%E8%BD%BB%E9%87%8F%E7%BA%A7%E6%A0%87%E8%AE%B0%E8%AF%AD%E8%A8%80.pdf)
+
