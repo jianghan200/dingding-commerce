@@ -3,12 +3,14 @@ dingding commerce
 
 ##Project Member
 
-* Han Jiang
-* Lily Yang
-* Jeffy Tsui
-* Hans Liu
-* Damon Lin
-* Seven Chu
+* Han Jiang, Project Manager,
+* Lily Yang, Requirement Analysist
+* Damon Lin, Database Designer
+* Hans Liu, Junior Programmer
+* Seven Chu, Junior Programmer
+* Richard, Junior Programmer
+* Jeffy Tsui, Junior Tester
+
 
 
 ##Requirement Analysis:
