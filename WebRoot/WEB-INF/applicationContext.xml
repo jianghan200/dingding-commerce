@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" 
+   "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans default-autowire="byName">
+
+	<!--database setting -->
+	<bean id="MyDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="username" value="root"></property>
+		<property name="password" value="root"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/ding"></property>
+		<property name="driverClassName" value="com.mysql.jdbc.Driver">
+		</property>
+	</bean>
+
+	<!--configurate Hibernate -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+		<!--data source via MySQL -->
+		<property name="dataSource">
+			<ref local="MyDataSource" />
+		</property>
+		<!--mapping resource for hibernate -->
+		<property name="mappingResources">
+			<list>
+				<value> com/ding/hbm/User.hbm.xml </value>
+				<value> com/ding/hbm/Product.hbm.xml </value>
+				<value> com/ding/hbm/Address.hbm.xml </value>
+				<value> com/ding/hbm/Category.hbm.xml </value>
+				<value> com/ding/hbm/Item.hbm.xml </value>
+				<value> com/ding/hbm/Order.hbm.xml </value>
+
+			</list>
+		</property>
+
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+				<prop key="hibernate.show_sql">
+					true
+				</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="transactionBase"
+		class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean"
+		lazy-init="true" abstract="true">
+
+		<property name="transactionManager" ref="transactionManager" />
+
+		<property name="transactionAttributes">
+			<props>
+				<prop key="*">PROPAGATION_REQUIRED</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="LoginAction" class="com.ding.action.user.LoginAction"
+		singleton="false">
+		<property name="userDao">
+			<ref local="JdbcUserDAO" />
+		</property>
+		<property name="userService">
+			<ref local="UserServiceImpl" />
+		</property>
+
+	</bean>
+
+	<bean id="EmailAction" class="com.ding.action.user.EmailAction"
+		singleton="false">
+
+		<property name="userService">
+			<ref local="UserServiceImpl" />
+		</property>
+
+	</bean>
+
+
+
+	<bean id="RegisterAction" class="com.ding.action.user.RegisterAction"
+		singleton="false">
+		<property name="userService">
+			<ref local="UserServiceImpl" />
+		</property>
+
+	</bean>
+
+	<bean id="VerifyAction" class="com.ding.action.user.VerifyAction"
+		singleton="false">
+		<property name="userDao">
+			<ref local="JdbcUserDAO" />
+		</property>
+
+	</bean>
+
+	<bean id="BuyAction" class="com.ding.action.cart.BuyAction"
+		singleton="false">
+		<property name="cartService">
+			<ref local="CartServiceImpl" />
+		</property>
+
+	</bean>
+	<bean id="CartListAction" class="com.ding.action.cart.CartListAction"
+		singleton="false">
+		<property name="cartService">
+			<ref local="CartServiceImpl" />
+		</property>
+
+	</bean>
+	<bean id="DeleteAction" class="com.ding.action.cart.DeleteAction"
+		singleton="false">
+		<property name="cartService">
+			<ref local="CartServiceImpl" />
+		</property>
+	</bean>
+	<bean id="RecoveryAction" class="com.ding.action.cart.RecoveryAction"
+		singleton="false">
+		<property name="cartService">
+			<ref local="CartServiceImpl" />
+		</property>
+
+	</bean>
+	<bean id="UpdateAction" class="com.ding.action.cart.UpdateAction"
+		singleton="false">
+		<property name="cartService">
+			<ref local="CartServiceImpl" />
+		</property>
+
+	</bean>
+
+	<bean id="AddressFromAction" class="com.ding.action.order.AddressFromAction"
+		singleton="false">
+		<property name="addressDao">
+			<ref local="JdbcAddressDAO" />
+		</property>
+
+	</bean>
+
+	<bean id="TextAddAction" class="com.ding.action.order.TextAddAction"
+		singleton="false">
+		<property name="addressDao">
+			<ref local="JdbcAddressDAO" />
+		</property>
+
+	</bean>
+
+
+	<bean id="AddressAction" class="com.ding.action.order.AddressAction"
+		singleton="false">
+		<property name="addressDao">
+			<ref local="JdbcAddressDAO" />
+		</property>
+		<property name="orderdao">
+			<ref local="JdbcOrderDAO" />
+		</property>
+		<property name="itemdao">
+			<ref local="JdbcItemDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="CategoryAction" class="com.ding.action.main.CategoryAction"
+		singleton="false">
+
+		<property name="mainService">
+			<ref local="MainServiceImpl" />
+		</property>
+
+	</bean>
+
+
+	<bean id="OrderAction" class="com.ding.action.order.OrderAction"
+		singleton="false">
+
+		<property name="cartService">
+			<ref local="CartServiceImpl" />
+		</property>
+
+	</bean>
+
+
+	<bean id="ProductAction" class="com.ding.action.main.ProductAction"
+		singleton="false">
+		<property name="introduceDao">
+			<ref local="JdbcBIntroduceDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="NewAction" class="com.ding.action.main.NewAction"
+		singleton="false">
+		<property name="productDao">
+			<ref local="JdbcProductDAO" />
+		</property>
+
+	</bean>
+
+
+	<bean id="BookListAction" class="com.ding.action.main.BookListAction"
+		singleton="false">
+
+		<property name="categoryDao">
+			<ref local="JdbcCategoryDAO" />
+		</property>
+		
+		<property name="bookDao">
+			<ref local="JdbcBookDAO" />
+		</property>
+
+
+	</bean>
+
+
+	<bean id="HotBookAction" class="com.ding.action.main.HotBookAction"
+		singleton="false">
+		<property name="bookDao">
+			<ref local="JdbcBookDAO" />
+		</property>
+	</bean>
+
+	<bean id="RecommendAction" class="com.ding.action.main.RecommendAction"
+		singleton="false">
+		<property name="bookDao">
+			<ref local="JdbcBookDAO" />
+		</property>
+	</bean>
+
+
+	<bean id="HotNewAction" class="com.ding.action.main.HotNewAction"
+		singleton="false">
+		<property name="bookDao">
+			<ref local="JdbcBookDAO" />
+		</property>
+
+	</bean>
+	
+	<bean id="ModifyNormalUserAction" class="com.ding.action.admin.ModifyNormalUserAction"
+		singleton="false">
+		<property name="userDao">
+			<ref local="JdbcUserDAO" />
+		</property>
+
+	</bean>
+	
+
+	<bean id="JdbcAddressDAO" class="com.ding.dao.impl.JdbcAddressDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="JdbcBIntroduceDAO" class="com.ding.dao.impl.JdbcBIntroduceDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<bean id="JdbcBookDAO" class="com.ding.dao.impl.JdbcBookDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JdbcCategoryDAO" class="com.ding.dao.impl.JdbcCategoryDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+	<bean id="JdbcItemDAO" class="com.ding.dao.impl.JdbcItemDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="JdbcOrderDAO" class="com.ding.dao.impl.JdbcOrderDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+
+	<bean id="JdbcProductDAO" class="com.ding.dao.impl.JdbcProductDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="JdbcUserDAO" class="com.ding.dao.impl.JdbcUserDAO"
+		singleton="false">
+		<property name="sf">
+			<ref local="sessionFactory" />
+		</property>
+	</bean>
+
+	<bean id="UserServiceImpl" class="com.ding.service.impl.UserServiceImpl"
+		singleton="false">
+		<property name="userDao">
+			<ref local="JdbcUserDAO" />
+		</property>
+	</bean>
+	<bean id="MainServiceImpl" class="com.ding.service.impl.MainServiceImpl"
+		singleton="false">
+		<property name="categoryDao">
+			<ref local="JdbcCategoryDAO" />
+		</property>
+	</bean>
+	<bean id="CartServiceImpl" class="com.ding.service.impl.CartServiceImpl"
+		singleton="false">
+		<property name="productDao">
+			<ref local="JdbcProductDAO" />
+		</property>
+	</bean>
+</beans>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+    
+	<package name="order" namespace="/order" extends="dang-Default">
+		<!-- 定义订单的Action -->
+		<action name="order_info" class="com.ding.action.order.OrderAction">
+		<interceptor-ref name="checklogin"/>
+		 <result name="orderlist">
+		   /order/order_info.jsp
+		 </result>
+		 <result name="empty">/cart/cart_list.jsp</result>
+		</action>
+		<action name="address_form" class="AddressFromAction">
+		  <result name="success">
+		    /order/address_form.jsp
+		  </result>
+		</action>
+		<!-- 依据原有地址返回信息 -->
+		<action name="textAdd" class="TextAddAction">
+		<result name="success" type="json">
+		 <param name="root">textAddress</param>
+		</result>
+		<result name="empty">/cart/caet_list.jsp</result>
+		</action>
+		<action name="address" class="AddressAction">
+		
+		  <result name="success">
+		    /order/order_ok.jsp
+		  </result>
+		</action>
+	</package>
+</struts>

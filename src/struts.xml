@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+
+<struts>
+	<constant name="struts.i18n.encoding" value="utf-8"></constant>
+	<constant name="struts.objectFactory" value="spring"></constant>
+
+	<include file="struts-user.xml" />
+	<include file="struts-order.xml" />
+	<include file="struts-cart.xml" />
+	<include file="struts-main.xml" />
+	<include file="struts-admin.xml" />
+	<package name="dang-Default" extends="json-default">
+		<interceptors>
+			<interceptor name="transaction"
+				class="com.ding.interceptor.TransactionInterceptor" />
+			<interceptor name="checklogin"
+				class="com.ding.interceptor.CheckLoginInterceptor" />
+
+			<interceptor-stack name="dangStack">
+				<interceptor-ref name="transaction" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+			<interceptor-stack name="checklogin">
+				<interceptor-ref name="checklogin" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+
+		</interceptors>
+		<!-- 所有Action请求使用dangStack拦截器 -->
+		<default-interceptor-ref name="dangStack" />
+
+		<!-- 定义共通的拦截器,Result和Action组件 -->
+		<global-results>
+
+			<result name="error">
+				/error.jsp
+			</result>
+
+			<result name="mustlogin" type="redirect">/user/login_form.jsp</result>
+
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+
+
+	</package>
+
+</struts>

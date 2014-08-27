@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="cart" namespace="/cart" extends="dang-Default">
+		<!-- 定义购物车的Action -->
+		<!-- 购买 -->
+		<action name="buy" class="BuyAction">
+		  <result name="success" type="json">
+		    <param name="root">ok</param>
+		  </result>
+		</action>
+		<!-- 购物车列表 -->
+		<action name="cartlist" class="CartListAction">
+		  <result name="list">
+		    /cart/cart_list.jsp
+		  </result>
+		  
+		</action>
+		<!-- 修改数量 -->
+		<action name="update" class="UpdateAction">
+		 <result name="list" type="redirectAction">
+		 cartlist
+		 </result>
+		</action>
+		<!-- 删除 -->
+		<action name="delete" class="DeleteAction">
+		 <result name="list" type="redirectAction">
+		 cartlist
+		 </result>
+		</action>
+		<!-- 恢复 -->
+		<action name="recovery" class="RecoveryAction">
+		  <result name="list" type="redirectAction">
+		  cartlist
+		  </result>
+		</action>
+		
+		<!-- 重置 -->
+		<action name="reset" class="com.ding.action.cart.ResetAction">
+		  <result name="success" type="redirectAction">
+		    cartlist
+		  </result>
+		</action>
+		
+	</package>
+</struts>

@@ -1,0 +1,53 @@
+package com.ding.action.admin;
+
+import java.sql.SQLException;
+
+import com.ding.dao.impl.JdbcAdminDAO;
+import com.ding.pojo.ApiMsg;
+
+public class DeleteUserAction {
+	private JdbcAdminDAO jdbcAdminDao;
+
+	private ApiMsg apiMsg = new ApiMsg();
+
+	public ApiMsg getApiMsg() {
+		return apiMsg;
+	}
+
+	public void setApiMsg(ApiMsg apiMsg) {
+		this.apiMsg = apiMsg;
+	}
+
+	private int user_id;
+
+	public int getUser_id() {
+		return user_id;
+	}
+
+	public void setUser_id(int user_id) {
+		this.user_id = user_id;
+	}
+
+
+	public JdbcAdminDAO getJdbcAdminDao() {
+		return jdbcAdminDao;
+	}
+
+	public void setJdbcAdminDao(JdbcAdminDAO jdbcAdminDao) {
+		this.jdbcAdminDao = jdbcAdminDao;
+	}
+
+	public String execute() throws Exception {
+		System.out.println("User id is " + user_id);
+//		jdbcAdminDao = new JdbcAdminDAO();
+//		jdbcAdminDao.deleteUser(user_id);
+		return "success";
+	}
+	
+	public static void  main(String[] args) throws SQLException{
+	
+		JdbcAdminDAO jdbcAdminDao = new JdbcAdminDAO();
+		jdbcAdminDao.deleteUser(1);
+
+	}
+}

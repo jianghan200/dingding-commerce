@@ -1,0 +1,26 @@
+package com.ding.action.admin;
+
+import com.ding.dao.impl.JdbcAdminDAO;
+
+public class DeleteUserAction {
+private JdbcAdminDAO jdbcAdminDao;
+	
+	public JdbcAdminDAO getJdbcAdminDao() {
+		return jdbcAdminDao;
+	}
+	public void setJdbcAdminDao(JdbcAdminDAO jdbcAdminDao) {
+		this.jdbcAdminDao = jdbcAdminDao;
+	}
+	
+	public String execute(int user_id) throws Exception {
+		jdbcAdminDao = new JdbcAdminDAO();
+		jdbcAdminDao.deleteUser(1);
+		return "success";
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		JdbcAdminDAO jdbcAdminDao = new JdbcAdminDAO();
+		jdbcAdminDao.deleteUser(1);
+	}
+}

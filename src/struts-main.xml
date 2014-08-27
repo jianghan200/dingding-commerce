@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="main" namespace="/main" extends="dang-Default">
+		<!-- 定义产品浏览的Action -->
+		<action name="new" class="NewAction">
+		  <param name="size">8</param>
+		  <result>/main/new.jsp</result>
+		</action>
+		<!-- 主页面左侧类别显示 -->
+		<action name="category" class="CategoryAction">
+		  <result>/main/category.jsp</result>
+		</action>
+		 <!-- 类别浏览页面 -->
+		<action name="booklist" class="BookListAction">
+		  <param name="size">3</param>
+		  <result>
+		    /main/book_list.jsp
+		  </result>
+		</action>
+		
+		<action name="demo" class="com.ding.action.main.DemoAction">
+		  <result name="success" type="json">
+		    <param name="root">users</param>
+		  </result>
+		</action>
+		<!-- 编辑推荐页面 -->
+		<action name="recommend" class="RecommendAction">
+		  <result>
+		    /main/recommend.jsp
+		  </result>
+		
+		</action>
+		<!-- 书籍详细 -->
+		<action name="product" class="ProductAction">
+		  <result name="success">
+		    /main/product.jsp
+		  </result>
+		</action>
+		<!-- 热销图书 -->
+		<action name="hot" class="HotBookAction">
+		<param name="size">8</param>
+		 <result name="success">
+		   /main/hot.jsp 
+		 </result>
+		</action>
+		<!-- 近一个月热卖 -->
+		<action name="hotNew" class="HotNewAction">
+		<param name="size">9</param>
+		 <result name="success">
+		   /main/hotNew.jsp 
+		 </result>
+		</action>
+		<!-- 帮助页面 -->
+		<action name="help" class="com.ding.action.main.HelpAction">
+		 <result name="success">
+		   /main/help.jsp
+		 </result>
+		</action>
+	</package>
+</struts>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="user" namespace="/user" extends="dang-Default">
+		<!-- 定义用户管理的Action -->
+		<action name="register" class="RegisterAction">
+			<result name="verify">/user/verify_form.jsp</result>
+		</action>
+
+		<!-- 验证码 -->
+		<action name="image" class="com.ding.action.user.ImageAction">
+			<result name="success" type="stream">
+				<param name="inputName">imageStream</param>
+			</result>
+		</action>
+		<!-- ajax检验验证码 -->
+		<action name="valid" class="com.ding.action.user.ValidAction">
+			<result name="success" type="json">
+				<param name="root">ok</param>
+			</result>
+			<!--检验邮箱 -->
+		</action>
+		<action name="email" class="EmailAction">
+			<result name="success" type="json">
+				<param name="root">emailOk</param>
+			</result>
+		</action>
+		<!--邮箱验证码 -->
+		<action name="emailCode" class="com.ding.action.user.EmailCodeAction">
+			<result name="success" type="json">
+				<param name="root">ok</param>
+			</result>
+		</action>
+		<action name="register_ok" class="VerifyAction">
+			<result name="success">
+				/user/register_ok.jsp
+			</result>
+		</action>
+		<!-- 登陆验证 -->
+		<!-- <action name="login" class="com.ding.action.user.LoginAction"> -->
+		<action name="login" class="LoginAction">
+
+			<result name="success" type="redirect">
+				/main/ding.jsp
+			</result>
+			<result name="fail">
+				/user/login_form.jsp
+			</result>
+		</action>
+		<!-- 登出 -->
+		<action name="exit" method="exit" class="LoginAction">
+			<result name="success">
+				/user/login_form.jsp
+			</result>
+		</action>
+		<!-- 我的丁丁 -->
+		<action name="mydd" class="com.ding.action.user.MyDDAction">
+			<interceptor-ref name="checklogin" />
+			<result name="success">
+				/user/MyDD.jsp
+			</result>
+
+
+		</action>
+		<action name="user_info" class="com.ding.action.user.UserInfoAction">
+			<interceptor-ref name="checklogin" />
+			<result name="fail">
+				/error.jsp
+			</result>
+			<result name="success">
+				/user/user_info.jsp
+			</result>
+		</action>
+	</package>
+</struts>

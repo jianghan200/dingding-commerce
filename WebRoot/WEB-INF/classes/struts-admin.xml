@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+    "-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+    "http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<struts>
+	<package name="admin" namespace="/admin" extends="dang-Default">
+	 
+	  <!-- 定义用户管理的Action -->
+	  <action name="user" class="com.ding.action.admin.ShowUserAction">
+	  	<result name="success">/admin/user.jsp</result>
+	  </action>
+
+	  <!-- 定义用户管理的Action -->
+	  <action name="delete-user" class="com.ding.action.admin.DeleteUserAction">
+	  	  <result name="success">/admin/user.jsp</result>
+	  </action>
+	  
+	  <action name="add-user" class="com.ding.action.admin.AddUserAction">
+		  	<result name="success" type="redirectAction">user</result>
+	  </action>
+	  
+	  <action name="add-product" class="com.ding.action.admin.AddProductAction">
+	  	<result name="success" type="redirectAction">show-product</result>
+	  </action>
+	  <action name="show-product" class="com.ding.action.admin.ShowProductAction">
+	  	<result name="success">/admin/product.jsp</result>
+	  	
+	  </action>
+	    <action name="delete-product" class="com.ding.action.admin.DeleteProductAction">
+	  	<result name="success">/admin/product.jsp</result>
+	  </action>
+	  
+      <action name="delete-order" class="com.ding.action.admin.DeleteOrderAction">
+	  	<result name="success">/admin/order.jsp</result>
+	  </action>
+
+	  <action name="show-order" class="com.ding.action.admin.ShowOrderAction">
+	  	<result name="success">/admin/order.jsp</result>
+	  </action>
+	  
+	  <action name="show-order-by-user" class="com.ding.action.admin.ShowOrderByUserAction">
+	  	<result name="success">/user/order.jsp</result>
+	  </action>
+	  
+	  <action name="modify-normal-user" class="ModifyNormalUserAction">
+	  	<result name="success" type="redirect">/user/info.jsp</result>
+	  </action>
+	  
+	  
+	  
+	  	</package>
+</struts>
