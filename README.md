@@ -1,10 +1,12 @@
 DingDing E-Commerce System
 ==================
-（丁丁电子商务系统）
+This project is developed under MyEclipse 10， using Struts，Hibernate，Spring and MySQL
 
-Before you run, pls configurate the database correctly
+Before you run, pls configurate them correctly
 
-Struts and Hibernate and MySQL
+The databse initialization file is under the root of the project.
+
+
 
 ##Project Member
 
