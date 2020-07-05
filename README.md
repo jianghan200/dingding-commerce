@@ -1,4 +1,4 @@
-DingDing E-Commerce System
+# DingDing E-Commerce System
 ==================
 This project is developed under MyEclipse 10， using Struts，Hibernate，Spring and MySQL
 
@@ -8,7 +8,7 @@ The databse initialization file is under the root of the project.
 
 
 
-##Project Member
+## Project Member
 
 * Han Jiang, Project Manager,
 * Lily Yang, Requirement Analysist
@@ -20,7 +20,7 @@ The databse initialization file is under the root of the project.
 
 
 
-##Requirement Analysis:
+## Requirement Analysis:
  
 We are going to develop an ecommerce system in Java using JSP, MySQL, Struts, Hibernate, Spring
 The project is supposed to finished in 12 days
