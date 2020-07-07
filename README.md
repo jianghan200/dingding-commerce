@@ -1,9 +1,8 @@
 # DingDing E-Commerce System
-==================
 
 This project is developed under MyEclipse 10， using Struts，Hibernate，Spring and MySQL
 
-Before you run, pls configurate them correctly
+Before you run, please configurate them correctly
 
 The databse initialization file is under the root of the project.
 
